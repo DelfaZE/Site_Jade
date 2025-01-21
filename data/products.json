@@ -1,0 +1,16 @@
+[
+    {
+        "id": "1",
+        "name": "Produit A",
+        "price": 10,
+        "description": "Ceci est le produit A.",
+        "image": "https://via.placeholder.com/300"
+    },
+    {
+        "id": "2",
+        "name": "Produit B",
+        "price": 15,
+        "description": "Ceci est le produit B.",
+        "image": "https://via.placeholder.com/300"
+    }
+]
