@@ -59,6 +59,37 @@
     <footer class="bg-dark text-white text-center py-3 mt-5">
         <p>&copy; 2025 Mon Mini E-commerce</p>
     </footer>
+<script>
+    // Initialisation du dataLayer
+    window.dataLayer = window.dataLayer || [];
+
+    // Exemple d'un produit sur la page produit
+    const product = {
+        id: "1",
+        name: "Produit A",
+        price: 10
+    };
+
+    // Pousser le produit dans le dataLayer
+    window.dataLayer.push({
+        event: "page_view",
+        page: {
+            name: "Page Produit",
+            type: "product"
+        },
+        ecommerce: {
+            items: [
+                {
+                    item_id: product.id,
+                    item_name: product.name,
+                    price: product.price
+                }
+            ]
+        }
+    });
+
+    console.log("DataLayer Produit :", window.dataLayer);
+</script>
 
     <script src="js/scripts.js"></script>
 </body>
