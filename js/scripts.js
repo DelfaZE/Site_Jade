@@ -13,6 +13,55 @@ document.addEventListener('DOMContentLoaded', () => {
             cartCountEl.textContent = cart.length;
         }
     }
+    // Initialisation du dataLayer
+    window.dataLayer = window.dataLayer || [];
+
+    // Fonction pour enregistrer une vue de page
+    function pushPageView(pageName, pageType) {
+        window.dataLayer.push({
+            event: "page_view",
+            page: {
+                name: pageName,
+                type: pageType,
+            },
+        });
+    }
+
+    // Fonction pour enregistrer un ajout au panier
+    function pushAddToCart(product) {
+        window.dataLayer.push({
+            event: "add_to_cart",
+            ecommerce: {
+                currency: "EUR",
+                value: product.price,
+                items: [
+                    {
+                        item_id: product.id,
+                        item_name: product.name,
+                        price: product.price,
+                        quantity: 1,
+                    },
+                ],
+            },
+        });
+    }
+
+    // Fonction pour enregistrer une commande
+    function pushPurchase(totalPrice, products) {
+        window.dataLayer.push({
+            event: "purchase",
+            ecommerce: {
+                currency: "EUR",
+                value: totalPrice,
+                items: products.map(product => ({
+                    item_id: product.id,
+                    item_name: product.name,
+                    price: product.price,
+                    quantity: 1,
+                })),
+            },
+        });
+    }
 
     // Initialisation du compteur de panier
     updateCartCount();
