@@ -51,5 +51,40 @@
         <p>Nous espérons vous revoir bientôt.</p>
         <a href="index.html" class="btn btn-primary">Retour à l'accueil</a>
     </div>
+    <script>
+        // Initialisation du dataLayer
+        window.dataLayer = window.dataLayer || [];
+
+        // Exemple des produits dans la commande
+        const cart = [
+            { id: "1", name: "Produit A", price: 10, quantity: 1 },
+            { id: "2", name: "Produit B", price: 20, quantity: 2 }
+        ];
+
+        // Calculer le total de la vente
+        const totalPrice = cart.reduce((sum, product) => sum + product.price * product.quantity, 0);
+
+        // Générer une référence de vente unique (timestamp)
+        const saleReference = `SALE-${Date.now()}`;
+
+        // Pousser les données de la vente dans le dataLayer
+        window.dataLayer.push({
+            event: "purchase",
+            ecommerce: {
+                transaction_id: saleReference,
+                currency: "EUR",
+                value: totalPrice,
+                items: cart.map(product => ({
+                    item_id: product.id,
+                    item_name: product.name,
+                    price: product.price,
+                    quantity: product.quantity
+                }))
+            }
+        });
+
+        console.log("DataLayer Vente :", window.dataLayer);
+    </script>
+
 </body>
 </html>
